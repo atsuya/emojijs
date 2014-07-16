@@ -2,9 +2,29 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>emojijs</title>
   </head>
   <body>
-    <script src="js/plugins.js"></script>
+    <p class="emoji">
+what up 💩
+    </p>
+    <canvas id="emoji" width="64" height="64"></canvas>
+    <script src="/jquery-2.1.1.min.js"></script>
+    <script src="/emoji.js"></script>
+    <script>
+$(function () {
+  var canvas = document.getElementById('emoji');
+  var context = canvas.getContext('2d');
+
+  var image = new Image();
+  image.onload = function () {
+    context.drawImage(image, 0, 0, 30, 30);
+  };
+  image.src = '/emoji-crying.png';
+});
+    </script>
+    <script>
+new Emoji();
+    </script>
   </body>
 </html>
