@@ -13,12 +13,11 @@
   };
 
   Emoji.prototype.replaceWith = function (element) {
+    var height = element.offsetHeight;
+
     var text = $(element).text();
-    var index = text.indexOf('💩');
-    if (index !== -1) {
-      var newText = text.substr(0, index) + '<canvas class="poo" width="30" height="30"></canvas>' + text.substr(index + 1);
-      $(element).html(newText);
-    }
+    var newText = text.replace(/💩/g, '<canvas class="poo" width="' + height + '" height="' + height + '"></canvas>');
+    $(element).html(newText);
   };
 
   Emoji.prototype.draw = function () {
@@ -32,7 +31,7 @@
     var context = element.getContext('2d');
     var image = new Image();
     image.onload = function () {
-      context.drawImage(image, 0, 0, 30, 30);
+      context.drawImage(image, 0, 0, element.width, element.height);
     };
     image.src = '/emoji-crying.png';
   };
